@@ -34,5 +34,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: $CURRENT_DATE-name
-          path: *
+          path: /*.*
           if-no-files-found: warn
