@@ -19,7 +19,7 @@ jobs:
            echo hello > ${{ github.workspace }}/artifact/world.txt
         - uses: actions/upload-artifact@v3
           with:
-            name: ${{ env.name }}-name
+            name: ${{ github.repository.name }}-name
             path: ${{ github.workspace }}/artifact/**/*
     
       #- name: Checkout Repository
