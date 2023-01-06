@@ -25,6 +25,7 @@ jobs:
         
       - name: Get Current Date
         run: CURRENT_DATE=$(date +%Y-%m-%d-%H-%M)
+      - name: Print Current Date
         run: echo $CURRENT_DATE
         
       #- name: Echo Current Date To Log
