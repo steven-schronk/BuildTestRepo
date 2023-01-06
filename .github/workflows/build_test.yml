@@ -14,8 +14,16 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+        - run: |
+           mkdir -p ${{ github.workspace }}/artifact
+           echo hello > ${{ github.workspace }}/artifact/world.txt
+        - uses: actions/upload-artifact@v3
+          with:
+            name: ${{ env.name }}-name
+            path: ${{ github.workspace }}/artifact/**/*
+    
+      #- name: Checkout Repository
+      #  uses: actions/checkout@v3
 
       #- name: Get Short SHA of Commit
       #  run: echo "sha_short=$(git rev-parse --short HEAD)" >> $GITHUB_OUTPUT
@@ -23,17 +31,17 @@ jobs:
       #- name: Echo Short SHA to Log
       #  run: echo ${{ steps.sha.outputs.sha_short }}
         
-      - name: Get Current Date
-        run: CURRENT_DATE=$(date +%Y-%m-%d-%H-%M)
-      - name: Print Current Date
-        run: echo $CURRENT_DATE
+      #- name: Get Current Date
+      #  run: CURRENT_DATE=$(date +%Y-%m-%d-%H-%M)
+      #- name: Print Current Date
+      #  run: echo $CURRENT_DATE
         
       #- name: Echo Current Date To Log
       #  run: echo ${{ env.CURRENT_DATE }}
 
-      - name: Upload to GitHub Actions Artifact Storage
-        uses: actions/upload-artifact@v3
-        with:
-          name: $CURRENT_DATE-name
-          path: /*.*
-          if-no-files-found: warn
+      #- name: Upload to GitHub Actions Artifact Storage
+      #  uses: actions/upload-artifact@v3
+      #  with:
+      #    name: $CURRENT_DATE-name
+      #    path: /*.*
+      #    if-no-files-found: warn
